@@ -6,9 +6,9 @@ generator client {
 
 datasource db {
     provider          = "postgresql"
-    url               = "postgres://default:CP2d5xDQhrHn@ep-twilight-hat-354577-pooler.us-east-1.postgres.vercel-storage.com:5432/dev?pgbouncer=true&connect_timeout=15"
-    directUrl         = "postgres://default:CP2d5xDQhrHn@ep-twilight-hat-354577.us-east-1.postgres.vercel-storage.com:5432/dev"
-    shadowDatabaseUrl = "postgres://default:CP2d5xDQhrHn@ep-twilight-hat-354577.us-east-1.postgres.vercel-storage.com:5432/dev"
+    url               = env("POSTGRES_PRISMA_URL")
+    directUrl         = env("POSTGRES_URL_NON_POOLING")
+    shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model User {
