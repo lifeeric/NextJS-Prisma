@@ -1,0 +1,28 @@
+// schema.prisma
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider          = "postgresql"
+    url               = "postgres://default:CP2d5xDQhrHn@ep-twilight-hat-354577-pooler.us-east-1.postgres.vercel-storage.com:5432/dev?pgbouncer=true&connect_timeout=15"
+    directUrl         = "postgres://default:CP2d5xDQhrHn@ep-twilight-hat-354577.us-east-1.postgres.vercel-storage.com:5432/dev"
+    shadowDatabaseUrl = "postgres://default:CP2d5xDQhrHn@ep-twilight-hat-354577.us-east-1.postgres.vercel-storage.com:5432/dev"
+}
+
+model User {
+    id         Int      @id @default(autoincrement())
+    VendorName String
+    Date       DateTime
+    orders     Order[]
+}
+
+model Order {
+    id          Int    @id @default(autoincrement())
+    ModelNumber String
+    UnitPrice   Float
+    Quantity    Int
+    OwnerId     Int
+    Owner       User   @relation(fields: [OwnerId], references: [id])
+}
